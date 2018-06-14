@@ -4,7 +4,7 @@ import com.manywho.sdk.api.ContentType;
 import com.manywho.sdk.services.configuration.Configuration;
 
 public class ServiceConfiguration implements Configuration {
-    @Configuration.Setting(name="Secret Key", contentType= ContentType.String)
+    @Configuration.Setting(name="Secret Key", contentType= ContentType.Password)
     private String secretKey;
 
     public String getSecretKey() {

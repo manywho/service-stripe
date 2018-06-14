@@ -13,12 +13,10 @@ import java.util.Map;
 
 
 public class CreateChargeCommand implements ActionCommand<ServiceConfiguration, CreateCharge, CreateCharge.Input, CreateCharge.Output> {
-    private Charge charge;
     private ServiceConfiguration serviceConfiguration;
 
     @Inject
-    public CreateChargeCommand(Charge charge, ServiceConfiguration serviceConfiguration) {
-        this.charge = charge;
+    public CreateChargeCommand(ServiceConfiguration serviceConfiguration) {
         this.serviceConfiguration = serviceConfiguration;
     }
 
@@ -29,7 +27,7 @@ public class CreateChargeCommand implements ActionCommand<ServiceConfiguration, 
         try {
             stripeCharge = makeCharge(input.getAmount(), input.getCurrency(), input.getRequestToken());
         } catch (StripeException e) {
-            throw new RuntimeException("Error executing charge");
+            throw new RuntimeException("Error executing charge", e);
         }
         Charge charge = new Charge(stripeCharge.getId(), stripeCharge.getAmount(), stripeCharge.getCurrency(),
                 stripeCharge.getPaid());

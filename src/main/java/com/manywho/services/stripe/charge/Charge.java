@@ -7,7 +7,7 @@ import com.manywho.sdk.services.types.Type;
 public class Charge implements Type {
     public final static String NAME = "Charge";
 
-    public Charge(String id, Number amount, String currency, Boolean paid) {
+    public Charge(String id, Long amount, String currency, Boolean paid) {
         this.amount = amount;
         this.currency = currency;
         this.paid = paid;
@@ -19,7 +19,7 @@ public class Charge implements Type {
     private String id;
 
     @Type.Property(name = "Amount", contentType = ContentType.Number)
-    private Number amount;
+    private Long amount;
 
     @Type.Property(name = "Currency", contentType = ContentType.String)
     private String currency;
@@ -27,11 +27,11 @@ public class Charge implements Type {
     @Type.Property(name = "Paid", contentType = ContentType.Boolean)
     private Boolean paid;
 
-    public Number getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Number amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 

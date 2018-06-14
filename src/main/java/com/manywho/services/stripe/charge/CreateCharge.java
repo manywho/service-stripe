@@ -4,16 +4,16 @@ import com.manywho.sdk.api.ContentType;
 import com.manywho.sdk.services.actions.Action;
 import com.manywho.sdk.services.types.Type;
 
-@Action.Metadata(name = "Update Charge", summary = "What's happening?", uri = "charge-update")
+@Action.Metadata(name = "Create Charge", summary = "Execute Charge", uri = "charge-create")
 public class CreateCharge {
     public static class Input {
         @Action.Input(name = "Request Token", contentType = ContentType.String)
         private String requestToken;
 
-        @Type.Property(name = "Amount", contentType = ContentType.Number)
-        private Number amount;
+        @Action.Input(name = "Amount", contentType = ContentType.Number)
+        private Double amount;
 
-        @Type.Property(name = "Currency", contentType = ContentType.String)
+        @Action.Input(name = "Currency", contentType = ContentType.String)
         private String currency;
 
         public String getRequestToken() {

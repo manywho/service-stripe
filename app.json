@@ -1,0 +1,25 @@
+{
+  "name": "Boomi Flow Stripe Service",
+  "description": "A microservice that integrates Boomi Flow with Stripe",
+  "repository": "https://github.com/manywho/service-stripe",
+  "logo": "https://s3.amazonaws.com/manywho-service-assets/icons/service-stripe.png",
+  "keywords": [
+    "manywho",
+    "boomi",
+    "stripe"
+  ],
+  "env": {
+    "REDIS_URL": {
+      "description": "A Redis connection string that points to where data should be stored",
+      "required": true
+    },
+    "CLIENT_ID": {
+      "description": "The client id of the oauth client for Stripe",
+      "required": true
+    },
+    "CLIENT_SECRET": {
+      "description": "The client secret of the oauth client for Stripe",
+      "required": true
+    }
+  }
+}

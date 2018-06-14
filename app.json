@@ -13,10 +13,6 @@
       "description": "A Redis connection string that points to where data should be stored",
       "required": true
     },
-    "CLIENT_ID": {
-      "description": "The client id of the oauth client for Stripe",
-      "required": true
-    },
     "CLIENT_SECRET": {
       "description": "The client secret of the oauth client for Stripe",
       "required": true

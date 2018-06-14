@@ -16,7 +16,6 @@ If you need to, it's easy to spin up your own instance of the service if you fol
 The available configuration settings for the application are:
 
 * **REDIS_URL:** A Redis connection string, e.g. `redis://localhost:5432`
-* **CLIENT_ID**
 * **CLIENT_SECRET**
 
 #### Environment Variables

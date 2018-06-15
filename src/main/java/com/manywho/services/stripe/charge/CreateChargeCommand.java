@@ -1,6 +1,5 @@
 package com.manywho.services.stripe.charge;
 
-import com.google.inject.Inject;
 import com.manywho.sdk.api.run.elements.config.ServiceRequest;
 import com.manywho.sdk.services.actions.ActionCommand;
 import com.manywho.sdk.services.actions.ActionResponse;
@@ -13,19 +12,13 @@ import java.util.Map;
 
 
 public class CreateChargeCommand implements ActionCommand<ServiceConfiguration, CreateCharge, CreateCharge.Input, CreateCharge.Output> {
-    private ServiceConfiguration serviceConfiguration;
-
-    @Inject
-    public CreateChargeCommand(ServiceConfiguration serviceConfiguration) {
-        this.serviceConfiguration = serviceConfiguration;
-    }
 
     @Override
     public ActionResponse<CreateCharge.Output> execute(ServiceConfiguration serviceConfiguration, ServiceRequest serviceRequest, CreateCharge.Input input) {
         com.stripe.model.Charge stripeCharge;
 
         try {
-            stripeCharge = makeCharge(input.getAmount(), input.getCurrency(), input.getRequestToken());
+            stripeCharge = makeCharge(serviceConfiguration.getSecretKey(), input.getAmount(), input.getCurrency(), input.getRequestToken());
         } catch (StripeException e) {
             throw new RuntimeException("Error executing charge", e);
         }
@@ -37,13 +30,13 @@ public class CreateChargeCommand implements ActionCommand<ServiceConfiguration, 
     }
 
 
-    private com.stripe.model.Charge makeCharge(Number amount, String currency, String token) throws StripeException {
-        Stripe.apiKey = serviceConfiguration.getSecretKey();
-
+    private com.stripe.model.Charge makeCharge(String secretKey, Number amount, String currency, String token) throws StripeException {
         Map<String, Object> chargeMap = new HashMap<>();
         chargeMap.put("amount", amount);
         chargeMap.put("currency", currency);
         chargeMap.put("source", token); // obtained via Stripe.js
+
+        Stripe.apiKey = secretKey;
         return com.stripe.model.Charge.create(chargeMap);
     }
 }

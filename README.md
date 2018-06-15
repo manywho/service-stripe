@@ -15,7 +15,6 @@ If you need to, it's easy to spin up your own instance of the service if you fol
 
 The available configuration settings for the application are:
 
-* **REDIS_URL:** A Redis connection string, e.g. `redis://localhost:5432`
 * **CLIENT_SECRET**
 
 #### Environment Variables
@@ -24,7 +23,7 @@ You will have to configure the application at runtime by using environment varia
 application like this:
 
 ```bash
-$ REDIS_URL=redis://localhost:5432 CLIENT_ID=id CLIENT_SECRET=secret java -jar target/stripe-*.jar
+$ CLIENT_SECRET=secret java -jar target/stripe-*.jar
 ```
 
 ### Building

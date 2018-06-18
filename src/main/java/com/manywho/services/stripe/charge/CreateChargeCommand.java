@@ -18,12 +18,14 @@ public class CreateChargeCommand implements ActionCommand<ServiceConfiguration, 
         com.stripe.model.Charge stripeCharge;
 
         try {
-            stripeCharge = makeCharge(serviceConfiguration.getSecretKey(), input.getAmount(), input.getCurrency(), input.getRequestToken());
+            stripeCharge = makeCharge(serviceConfiguration.getSecretKey(), input.getCharge().getAmount(), input.getCharge().getCurrency(), input.getCharge().getUserToken());
         } catch (StripeException e) {
             throw new RuntimeException("Error executing charge", e);
         }
-        Charge charge = new Charge(stripeCharge.getId(), stripeCharge.getAmount(), stripeCharge.getCurrency(),
-                stripeCharge.getPaid());
+
+        Charge charge = input.getCharge();
+        charge.setId(stripeCharge.getId());
+        charge.setPaid(stripeCharge.getPaid());
 
         CreateCharge.Output output = new CreateCharge.Output(charge);
         return new ActionResponse<>(output);

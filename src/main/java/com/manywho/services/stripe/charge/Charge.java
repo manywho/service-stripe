@@ -7,6 +7,8 @@ import com.manywho.sdk.services.types.Type;
 public class Charge implements Type {
     public final static String NAME = "Charge";
 
+    public Charge() {}
+
     public Charge(String id, Long amount, String currency, Boolean paid) {
         this.amount = amount;
         this.currency = currency;

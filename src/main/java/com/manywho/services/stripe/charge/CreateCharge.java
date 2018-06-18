@@ -9,9 +9,14 @@ public class CreateCharge {
         @Action.Input(name = "Charge", contentType = ContentType.Object)
         private Charge charge;
 
+        @Action.Input(name = "Tokens", contentType = ContentType.Object)
+        private Token token;
+
         public Charge getCharge() {
             return charge;
         }
+
+        public Token getToken() {return token; }
     }
 
     public static class Output {

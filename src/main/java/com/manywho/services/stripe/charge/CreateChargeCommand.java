@@ -10,7 +10,6 @@ import com.stripe.exception.*;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class CreateChargeCommand implements ActionCommand<ServiceConfiguration, CreateCharge, CreateCharge.Input, CreateCharge.Output> {
 
     @Override
@@ -18,7 +17,7 @@ public class CreateChargeCommand implements ActionCommand<ServiceConfiguration, 
         com.stripe.model.Charge stripeCharge;
 
         try {
-            stripeCharge = makeCharge(serviceConfiguration.getSecretKey(), input.getCharge().getAmount(), input.getCharge().getCurrency(), input.getCharge().getUserToken());
+            stripeCharge = makeCharge(serviceConfiguration.getSecretKey(), input.getCharge().getAmount(), input.getCharge().getCurrency(), input.getToken().getUserToken());
         } catch (StripeException e) {
             throw new RuntimeException("Error executing charge", e);
         }

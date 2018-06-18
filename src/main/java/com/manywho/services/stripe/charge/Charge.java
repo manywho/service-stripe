@@ -29,11 +29,6 @@ public class Charge implements Type {
     @Type.Property(name = "Paid", contentType = ContentType.Boolean)
     private Boolean paid;
 
-    @Type.Property(name = "Public Token", contentType = ContentType.String)
-    private String publicToken;
-
-    @Type.Property(name = "User Token", contentType = ContentType.String)
-    private String userToken;
 
     public String getId() {
         return id;
@@ -65,21 +60,5 @@ public class Charge implements Type {
 
     public void setPaid(Boolean paid) {
         this.paid = paid;
-    }
-
-    public String getPublicToken() {
-        return publicToken;
-    }
-
-    public void setPublicToken(String publicToken) {
-        this.publicToken = publicToken;
-    }
-
-    public String getUserToken() {
-        return userToken;
-    }
-
-    public void setUserToken(String userToken) {
-        this.userToken = userToken;
     }
 }
